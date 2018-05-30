@@ -36,3 +36,6 @@ buildNumber.properties
 .settings
 .settings/*
 */.settings
+
+.DS_Store
+*/.DS_Store
