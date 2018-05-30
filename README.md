@@ -6,10 +6,10 @@
 #   and configure the corresponding environment variables:
 
 #     JDK: version >= 1.8
-# &nbps;&nbps;&nbps;&nbps;  Ant
-# &nbps;&nbps;&nbps;&nbps;  Maven
-# &nbps;&nbps;&nbps;&nbps;  Node(npm)
-# &nbps;&nbps;&nbps;&nbps;  Angular-cli(ng)
+#     Ant
+#     Maven
+#     Node(npm)
+#     Angular-cli(ng)
 
 # *********************************************************
 
@@ -17,7 +17,7 @@
 # ****************** Start up the Application *************
 
 # execute
-# &nbps;&nbps;&nbps;&nbps;  ant build
+#     ant build
 # in your terminal
 
 # *********************************************************
