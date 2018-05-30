@@ -56,7 +56,26 @@
     <exec executable="ng.cmd" failonerror="true" dir="${web.dir}">
       <arg value="build"/>
     </exec>
+
     <echo message="build angular success..." />
+
+    <echo message="satrt copy web to webapps..." />
+    <copydir dest="${web.app.dir}" src="${web.app.dist}">
+    </copydir>
+    <echo message="copy web ${web.app.dist} to ${web.app.dir} success..." />
+
+<!--
+    <echo message="satrt compile java file..." />
+       <exec executable="mvn.cmd" failonerror="true">
+         <arg value="compile"/>
+       </exec>
+    <echo message="compile java file success..." />
+-->
+    <echo message="satrt server..." />
+    <exec executable="mvn.cmd" failonerror="true">
+      <arg value="tomcat7:run"/>
+    </exec>
+
   </target>
 
   <!-- define our main target -->
