@@ -1,0 +1,101 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* define variables */
+$inet-orange: #ed711c;
+$inet-red: #ffc1cf;
+$inet-blue: #cdf7f6;
+$inet-yellow: #f2f3ae;
+$inet-green: #dbf4ad;
+
+// inet extended palette - shades for base colors. Not all in actual use yet
+$inet-orange-light: #ffb17c;
+$inet-orange-dark: #b75411;
+$inet-red-light: #ffd7e0;
+$inet-red-dark: #fe688b;
+$inet-blue-light: #f2fefe;
+$inet-blue-dark: #105e5a;
+$inet-yellow-light: #feffd2;
+$inet-yellow-dark: #656616;
+$inet-green-light:#e7f9c7;
+$inet-green-dark: #aacc6d;
+
+
+$inet-offwhite1: #fcfcfc;
+$inet-offwhite2: #f9f9f9;
+$inet-offwhite3: #f5f5f5;
+$inet-offwhite4: #f0f0f0;
+$inet-gray1: #e0e0e0;
+$inet-gray2: #bdbdbd;
+$inet-gray3: #757575;
+$inet-gray4: #424242;
+
+// text/icon fg colors
+$inet-default-icon-color: #6d6d6d;
+$inet-text-color: #202020;
+$inet-light-fg-color: #fff;
+$inet-default-icon-color: #6d6d6d;
+$inet-text-dark: #202020;
+$inet-text-light: #fff;
+
+
+$inet-drop-highlight: #66DD66;
+
+$portal-bar-black: $inet-gray4;
+
+/***
+ * Color vairables with sematic meaning.
+ *
+ * create & use variable in this section when a color is used for same meaning or consistent look in more than 1 component.
+ * otherwise, use color from theming section palette directly is ok.
+ */
+$third-color: $inet-yellow;           // any color coding necessary but doesn't fit with primary oranges and secondary blues
+$third-color-light: $inet-yellow-light;
+$fourth-color: $inet-green;           // last color coding option if third-color is already in use
+$fourth-color-light: $inet-green-light;
+
+$inet-gray-border: $inet-gray1;
+$selected-item-bg-color:  $inet-blue;
+$selected-item-color: $inet-text-color;
+$hover-bg-blue: $inet-blue-light;
+
+$top-bar-black: $inet-gray4;
+$top-bar-hover-gray: $inet-gray3;
+
+
+$asset-path: 'assets';
+$roboto-font-path: '~roboto-fontface/fonts';
+
+
+/* import scss files */
+@import '../node_modules/font-awesome/css/font-awesome.min.css';
+@import '~bootstrap/scss/bootstrap.scss';
+@import '~bootstrap-float-label/bootstrap-float-label.css';
+@import '~bootstrap/scss/bootstrap-reboot.scss';
+@import './assets/ineticons/style.scss';
+@import './scss/_imports';
+
+/* body of index.html */
+body {
+  font-size: 13px;
+  height: 100vh;
+  width: 100vw;
+  border: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+/* set element style */
+ul {
+  padding: 0px;
+  margin: 0px;
+}
+
+.icon-primary {
+  background-color: $inet-orange;
+}
+
+.link_hover_orange {
+  color: $inet-orange !important;
+  background-color: $inet-orange !important;
+}
+

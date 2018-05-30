@@ -1,0 +1,28 @@
+<div class="outer-scroll">
+  <div class="full-view-container">
+    <div class="split-content">
+      <split-pane direction="horizontal" [sizes]="[25,75]" [minSize]="200"
+                  cursor="col-resize" [snapOffset]="0">
+        <div class="left-container split">
+          <split-pane class="split-pane" direction="vertical" [sizes]="[55,45]"
+                      [minSize]="200" cursor="row-resize" [snapOffset]="0">
+            <div class="left-top-container split">
+              <repository-tree></repository-tree>
+            </div>
+            <div class="left-bottom-container split">
+              <div>This is Left Bottom block..</div>
+            </div>
+          </split-pane>
+        </div>
+        <div class="right-container split">
+          <div class="right-top-container">
+            This is right top block....
+          </div>
+          <div class="right-bottom-container">
+            This is right bottom block...
+          </div>
+        </div>
+      </split-pane>
+    </div>
+  </div>
+</div>

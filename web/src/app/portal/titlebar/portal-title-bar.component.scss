@@ -1,0 +1,54 @@
+$portal-navbar-height: 52px;
+
+.logo-icon-size {
+  font-size: 24px;
+  text-align: center;
+  vertical-align: center;
+  min-width: 70px;
+  height: 52px;
+  margin: 0px 5px;
+}
+
+.nav-icon-size {
+  font-size: 24px !important;
+  color: #ffffff;
+  text-align: center;
+  vertical-align: center;
+}
+
+.portal-toolbar-icon {
+  vertical-align: middle;
+}
+
+.portal-navbar {
+  padding: 0;
+  height: $portal-navbar-height;
+
+  .navbar-nav {
+    flex-direction: row;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 42px;
+    height: 52px;
+    //margin: 0px 5px;
+
+    &.disabled {
+      background-color: transparent;
+      opacity: 0.3;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    a :active, :visited, :link {
+      background-color: #424242;
+    }
+  }
+
+  .nav-link {
+    cursor: pointer;
+  }
+}
