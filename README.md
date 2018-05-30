@@ -1,17 +1,41 @@
 # sree
 
-# *************************************************************
+# ****************** Prerequisites ************************
 
- #  For learning purposes only, all copyright belongs to inetsoft.
+# You should have installed the following software
+#   and configure the corresponding environment variables:
 
-# *************************************************************
+# JDK: version >= 1.8
+# Ant
+# Maven
+# Node(npm)
+# Angular-cli(ng)
+
+# *********************************************************
+
+
+# ****************** Start up the Application *************
+
+# execute
+#     ant build
+# in your terminal
+
+# *********************************************************
+
+
+
+# *********************************************************
+
+# For learning purposes only, all copyright belongs to inetsoft.
+
+# *********************************************************
 
 # Technical selection:
-#  Java: Java Web(Current model) ---> SSM ---> Spring Boot + Mybatis
+#  Java: Java EE(Current model) ---> SSM ---> Spring Boot + Mybatis
 #  web: Angular2 + Bootstrap + SCSS + Node + Typescript
-#  Server: Jetty
+#  Server: Jetty(Current Tomcat)
 #  Database: H2
 #  Project Management Tools: Ant + Maven
 #  Cache: Redis (Feature)
 
-# *************************************************************
+# *********************************************************
