@@ -17,7 +17,7 @@
 # ****************** Start up the Application *************
 
 # execute
-#     ant build
+#     ant server
 # in your terminal
 
 # *********************************************************

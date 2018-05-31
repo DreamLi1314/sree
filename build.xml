@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="InetSoft Development Environment" basedir="." default="server" xmlns:unless="ant:unless">
+<project name="Personal Development Environment" basedir="." default="server" xmlns:unless="ant:unless">
   <property file="build.properties"/>
   <sequential unless:set="src.dir">
     <property name="src.dir" value="src"/>
@@ -14,6 +14,14 @@
       <entry key="web.dir" value="${web.dir}"/>
     </propertyfile>
   </sequential>
+
+
+	<!-- import lib -->
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties">
+	  <classpath>
+	    <pathelement location="${ant.lib.dir}ant-contrib-1.0b3.jar"/>
+	  </classpath>
+	</taskdef>
 
   <property environment="SystemVariable" />
   <property name="node.home" value="${SystemVariable.NODE_HOME}" />
@@ -43,6 +51,17 @@
       <arg value="build"/>
     </exec>
     <echo message="build angular success..." />
+
+    <echo message="satrt copy web to webapps..." />
+    <copydir dest="${web.app.dir}" src="${web.app.dist}">
+    </copydir>
+    <echo message="copy web ${web.app.dist} to ${web.app.dir} success..." />
+
+    <echo message="satrt server..." />
+    <exec executable="mvn" failonerror="true">
+      <arg value="tomcat7:run"/>
+    </exec>
+
   </target>
 
   <target name="build-windows" if="isWindows">
@@ -64,13 +83,6 @@
     </copydir>
     <echo message="copy web ${web.app.dist} to ${web.app.dir} success..." />
 
-<!--
-    <echo message="satrt compile java file..." />
-       <exec executable="mvn.cmd" failonerror="true">
-         <arg value="compile"/>
-       </exec>
-    <echo message="compile java file success..." />
--->
     <echo message="satrt server..." />
     <exec executable="mvn.cmd" failonerror="true">
       <arg value="tomcat7:run"/>
@@ -82,8 +94,30 @@
   <target name="build" depends="build-mac, build-windows">
   </target>
 
+
   <target name="server" description="start up the angular server" depends="build">
-    <echo message="start up the angular server"/>
+  	<!--
+  		<condition property="sdk.dir" value="${window.sdk.dir}" else="${linux.sdk.dir}">
+        <os family="windows" />
+    	</condition>
+  	-->
+
+
+  	<echo message="satrt server..." />
+
+		<if>
+			<isset property="isWindows"/>
+			<then>
+				<property name="mvn.command" value="mvn.cmd" />
+			</then>
+			<else>
+				<property name="mvn.command" value="mvn" />
+			</else>
+  	</if>
+
+    <exec executable="${mvn.command}" failonerror="true">
+      <arg value="tomcat7:run"/>
+    </exec>
   </target>
 
 </project>
