@@ -23,20 +23,9 @@
 # ********************************************************
 
 
-
-# ********************************************************
-
-# For learning purposes only, all copyright belongs to inetsoft.
-
-# ********************************************************
-
-
-
 # ********************************************************
 
 #Technical selection:
-
-# ********************************************************
 
 #  Java: Java EE(Current model) ---> SSM ---> Spring Boot + Mybatis
 #  web: Angular2 + Bootstrap + SCSS + Node + Typescript
@@ -44,5 +33,16 @@
 #  Database: H2
 #  Project Management Tools: Ant + Maven
 #  Cache: Redis (Feature)
+
+# ********************************************************
+
+
+
+
+
+
+# ********************************************************
+
+# For learning purposes only, all copyright belongs to inetsoft.
 
 # ********************************************************
