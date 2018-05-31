@@ -23,9 +23,7 @@
 # ********************************************************
 
 
-# ********************************************************
-
-#Technical selection:
+# ***************** Technical selection ******************
 
 #  Java: Java EE(Current model) ---> SSM ---> Spring Boot + Mybatis
 #  web: Angular2 + Bootstrap + SCSS + Node + Typescript
