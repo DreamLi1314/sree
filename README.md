@@ -16,8 +16,9 @@
 
 # ****************** Start up the Application ************
 
-# execute
-#     ant server
+# execute:
+#     ant init      # for install dependencies -- just first
+#     ant server	  # start up the application
 # in your terminal
 
 # ********************************************************

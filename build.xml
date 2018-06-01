@@ -15,7 +15,6 @@
     </propertyfile>
   </sequential>
 
-
 	<!-- import lib -->
 	<taskdef resource="net/sf/antcontrib/antcontrib.properties">
 	  <classpath>
@@ -101,24 +100,41 @@
     <echo message="install package success..." />
  	</target>
 
- 	<target name="init" depends="installDependencies">
+ 	<target name="init">
+		<antcall target="installDependencies" />
+		<antcall target="build" />
  	</target>
 
-  <target name="build" depends="init">
-    <echo message="start build angular..." />
-    <exec executable="${cmd.ng}" failonerror="true" dir="${web.dir}">
-      <arg value="build"/>
-    </exec>
-    <echo message="build angular success..." />
+ 	<target name="build-angulalr" unless="skip.angular">
+		<echo message="start build angular..." />
+		<exec executable="${cmd.ng}" failonerror="true" dir="${web.dir}">
+			<arg value="build"/>
+		</exec>
+		<echo message="build angular success..." />
+ 	</target>
 
-    <echo message="satrt copy web to webapps..." />
-    <copydir dest="${web.app.dir}" src="${web.app.dist}">
-    </copydir>
-    <echo message="copy web ${web.app.dist} to ${web.app.dir} success..." />
+	<target name="build-java" unless="skip.java">
+		<echo message="start compile java source...." />
+		<exec executable="${cmd.mvn}" failonerror="true">
+			<arg value="compile" />
+		</exec>
+		<echo message="compile java source success...." />
+	</target>
+
+	<target name="copy-chunk">
+		<echo message="satrt copy web to webapps..." />
+		<copydir dest="${web.app.dir}" src="${web.app.dist}">
+		</copydir>
+		<echo message="copy web ${web.app.dist} to ${web.app.dir} success..." />
+ 	</target>
+
+  <target name="build">
+  	 <antcall target="build-java" />
+  	 <antcall target="build-angulalr" />
+	 <antcall target="copy-chunk" />
   </target>
 
-
-  <target name="server" description="start up the angular server" depends="build">
+  <target name="server" description="start up the angular server">
   	<echo message="satrt server..." />
 
   	<!--
@@ -143,9 +159,31 @@
   </target>
 
   <target name="clean">
+  		<echo message="Satrt clean target/dist/chunk..." />
 		<delete dir="${web.dir}\\dist" />
 		<delete dir="${target.dir}" />
 		<delete dir="${web.app.dir}\\app" />
+		<echo message="Clean target/dist/chunk success..." />
+  </target>
+
+  <target name="clean-all" depends="clean">
+  		<echo message="Start clean ${web.dir}\\node_modules..." />
+		<delete dir="${web.dir}\\node_modules" />
+		<echo message="Clean ${web.dir}\\node_modules success..." />
+  </target>
+
+  <target name="rebuild">
+  		<echo message="Start rebuild...." />
+		<antcall target="clean" />
+		<antcall target="build" />
+		<echo message="Rebuild Success..." />
+  </target>
+
+  <target name="rebuild-all">
+  		<echo message="Start rebuild all..." />
+		<antcall target="clean-all" />
+		<antcall target="init" />
+		<echo message="Rebuild all success..." />
   </target>
 
 </project>
