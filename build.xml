@@ -19,7 +19,7 @@
 	<!-- import lib -->
 	<taskdef resource="net/sf/antcontrib/antcontrib.properties">
 	  <classpath>
-	    <pathelement location="${ant.lib.dir}ant-contrib-1.0b3.jar"/>
+	    <pathelement location="${ant.lib.dir}\\ant-contrib-1.0b3.jar"/>
 	  </classpath>
 	</taskdef>
 
@@ -38,16 +38,30 @@
     <os family="unix" />
   </condition>
 
+  <!-- define build command -->
+	<condition property="cmd.npm" value="npm.cmd" else="npm">
+    <isset property="isWindows"/>
+	</condition>
+
+	<condition property="cmd.ng" value="ng.cmd" else="ng">
+    <isset property="isWindows"/>
+	</condition>
+
+	<condition property="cmd.mvn" value="mvn.cmd" else="mvn">
+    <isset property="isWindows"/>
+	</condition>
+
+
   <!-- define the operating system specific targets -->
   <target name="build-mac" if="isMac">
     <echo message="start install package..." />
-    <exec executable="npm" failonerror="true" dir="${web.dir}">
+    <exec executable="${cmd.npm}" failonerror="true" dir="${web.dir}">
        <arg value="install" />
     </exec>
     <echo message="install package success..." />
 
     <echo message="start build angular..." />
-    <exec executable="ng" failonerror="true" dir="${web.dir}">
+    <exec executable="${cmd.ng}" failonerror="true" dir="${web.dir}">
       <arg value="build"/>
     </exec>
     <echo message="build angular success..." />
@@ -56,11 +70,6 @@
     <copydir dest="${web.app.dir}" src="${web.app.dist}">
     </copydir>
     <echo message="copy web ${web.app.dist} to ${web.app.dir} success..." />
-
-    <echo message="satrt server..." />
-    <exec executable="mvn" failonerror="true">
-      <arg value="tomcat7:run"/>
-    </exec>
 
   </target>
 
@@ -75,49 +84,68 @@
     <exec executable="ng.cmd" failonerror="true" dir="${web.dir}">
       <arg value="build"/>
     </exec>
-
     <echo message="build angular success..." />
 
     <echo message="satrt copy web to webapps..." />
     <copydir dest="${web.app.dir}" src="${web.app.dist}">
     </copydir>
     <echo message="copy web ${web.app.dist} to ${web.app.dir} success..." />
-
-    <echo message="satrt server..." />
-    <exec executable="mvn.cmd" failonerror="true">
-      <arg value="tomcat7:run"/>
-    </exec>
-
   </target>
 
   <!-- define our main target -->
-  <target name="build" depends="build-mac, build-windows">
+  <target name="installDependencies">
+		<echo message="start install package..." />
+    <exec executable="${cmd.npm}" failonerror="true" dir="${web.dir}">
+       <arg value="install" />
+    </exec>
+    <echo message="install package success..." />
+ 	</target>
+
+ 	<target name="init" depends="installDependencies">
+ 	</target>
+
+  <target name="build" depends="init">
+    <echo message="start build angular..." />
+    <exec executable="${cmd.ng}" failonerror="true" dir="${web.dir}">
+      <arg value="build"/>
+    </exec>
+    <echo message="build angular success..." />
+
+    <echo message="satrt copy web to webapps..." />
+    <copydir dest="${web.app.dir}" src="${web.app.dist}">
+    </copydir>
+    <echo message="copy web ${web.app.dist} to ${web.app.dir} success..." />
   </target>
 
 
   <target name="server" description="start up the angular server" depends="build">
+  	<echo message="satrt server..." />
+
   	<!--
   		<condition property="sdk.dir" value="${window.sdk.dir}" else="${linux.sdk.dir}">
         <os family="windows" />
     	</condition>
+
+			<if>
+				<isset property="isWindows"/>
+				<then>
+					<property name="mvn.command" value="mvn.cmd" />
+				</then>
+				<else>
+					<property name="mvn.command" value="mvn" />
+				</else>
+  		</if>
   	-->
 
-
-  	<echo message="satrt server..." />
-
-		<if>
-			<isset property="isWindows"/>
-			<then>
-				<property name="mvn.command" value="mvn.cmd" />
-			</then>
-			<else>
-				<property name="mvn.command" value="mvn" />
-			</else>
-  	</if>
-
-    <exec executable="${mvn.command}" failonerror="true">
+    <exec executable="${cmd.mvn}" failonerror="true">
       <arg value="tomcat7:run"/>
     </exec>
+  </target>
+
+  <target name="clean">
+		<delete dir="${web.dir}\\dist" />
+		<delete dir="${src.dist}" />
+		<delete dir="${web.app.dir}" />
   </target>
 
 </project>
