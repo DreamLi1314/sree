@@ -21,6 +21,10 @@
 #     ant server	  # start up the application
 # in your terminal
 
+# if you modify the source code, you can execute
+#		ant build
+# to re-compile the code.
+
 # ********************************************************
 
 
