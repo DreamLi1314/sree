@@ -2,10 +2,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.dreamli</groupId>
-	<artifactId>sree-mvn</artifactId>
+	<artifactId>sree</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>sree-mvn</name>
+	<name>sree</name>
 	<description>use maven to manage package for sree</description>
 	<properties>
 		<jdk.version>1.8</jdk.version>
