@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="Personal Development Environment" basedir="." default="server" xmlns:unless="ant:unless">
-  <property file="build.properties"/>
-  <sequential unless:set="src.dir">
-    <property name="src.dir" value="src"/>
-    <propertyfile file="build.properties">
-      <entry key="src.dir" value="${src.dir}"/>
-    </propertyfile>
-  </sequential>
+	<property file="build.properties"/>
+	<sequential unless:set="src.dir">
+	 <property name="src.dir" value="src"/>
+	 <propertyfile file="build.properties">
+	   <entry key="src.dir" value="${src.dir}"/>
+	 </propertyfile>
+	</sequential>
 
-  <sequential unless:set="web.dir">
-    <property name="web.dir" value="web"/>
-    <propertyfile file="build.properties">
-      <entry key="web.dir" value="${web.dir}"/>
-    </propertyfile>
-  </sequential>
+	<sequential unless:set="web.dir">
+	 <property name="web.dir" value="web"/>
+	 <propertyfile file="build.properties">
+	   <entry key="web.dir" value="${web.dir}"/>
+	 </propertyfile>
+	</sequential>
 
 	<!-- import lib -->
 	<taskdef resource="net/sf/antcontrib/antcontrib.properties">
@@ -22,22 +22,22 @@
 	  </classpath>
 	</taskdef>
 
-  <property environment="SystemVariable" />
-  <property name="node.home" value="${SystemVariable.NODE_HOME}" />
+	<property environment="SystemVariable" />
+	<property name="node.home" value="${SystemVariable.NODE_HOME}" />
 
-  <condition property="isMac">
-    <os family="mac" />
-  </condition>
+	<condition property="isMac">
+	 <os family="mac" />
+	</condition>
 
-  <condition property="isWindows">
-    <os family="windows" />
-  </condition>
+	<condition property="isWindows">
+	 <os family="windows" />
+	</condition>
 
-  <condition property="isUnix">
-    <os family="unix" />
-  </condition>
+	<condition property="isUnix">
+	 <os family="unix" />
+	</condition>
 
-  <!-- define build command -->
+   <!-- define build command -->
 	<condition property="cmd.npm" value="npm.cmd" else="npm">
     <isset property="isWindows"/>
 	</condition>
@@ -50,49 +50,8 @@
     <isset property="isWindows"/>
 	</condition>
 
-
-  <!-- define the operating system specific targets -->
-  <target name="build-mac" if="isMac">
-    <echo message="start install package..." />
-    <exec executable="${cmd.npm}" failonerror="true" dir="${web.dir}">
-       <arg value="install" />
-    </exec>
-    <echo message="install package success..." />
-
-    <echo message="start build angular..." />
-    <exec executable="${cmd.ng}" failonerror="true" dir="${web.dir}">
-      <arg value="build"/>
-    </exec>
-    <echo message="build angular success..." />
-
-    <echo message="satrt copy web to webapps..." />
-    <copydir dest="${web.app.dir}" src="${web.app.dist}">
-    </copydir>
-    <echo message="copy web ${web.app.dist} to ${web.app.dir} success..." />
-
-  </target>
-
-  <target name="build-windows" if="isWindows">
-    <echo message="start install package..." />
-    <exec executable="npm.cmd" failonerror="true" dir="${web.dir}">
-       <arg value="install" />
-    </exec>
-    <echo message="install package success..." />
-
-    <echo message="start build angular..." />
-    <exec executable="ng.cmd" failonerror="true" dir="${web.dir}">
-      <arg value="build"/>
-    </exec>
-    <echo message="build angular success..." />
-
-    <echo message="satrt copy web to webapps..." />
-    <copydir dest="${web.app.dir}" src="${web.app.dist}">
-    </copydir>
-    <echo message="copy web ${web.app.dist} to ${web.app.dir} success..." />
-  </target>
-
-  <!-- define our main target -->
-  <target name="installDependencies">
+   <!-- define our main target -->
+   <target name="installDependencies">
 		<echo message="start install package..." />
     <exec executable="${cmd.npm}" failonerror="true" dir="${web.dir}">
        <arg value="install" />
@@ -128,62 +87,61 @@
 		<echo message="copy web ${web.app.dist} to ${web.app.dir} success..." />
  	</target>
 
-  <target name="build">
-  	 <antcall target="build-java" />
-  	 <antcall target="build-angulalr" />
-	 <antcall target="copy-chunk" />
-  </target>
+	<target name="build">
+		<antcall target="build-java" />
+		<antcall target="build-angulalr" />
+		<antcall target="copy-chunk" />
+	</target>
 
-  <target name="server" description="start up the angular server">
-  	<echo message="satrt server..." />
+   <target name="server" description="start up the angular server">
+  		<echo message="satrt server..." />
 
-  	<!--
-  		<condition property="sdk.dir" value="${window.sdk.dir}" else="${linux.sdk.dir}">
-        <os family="windows" />
-    	</condition>
+	  	<!--
+	  		<condition property="sdk.dir" value="${window.sdk.dir}" else="${linux.sdk.dir}">
+	        <os family="windows" />
+	    	</condition>
 
-			<if>
-				<isset property="isWindows"/>
-				<then>
-					<property name="mvn.command" value="mvn.cmd" />
-				</then>
-				<else>
-					<property name="mvn.command" value="mvn" />
-				</else>
-  		</if>
-  	-->
+				<if>
+					<isset property="isWindows"/>
+					<then>
+						<property name="mvn.command" value="mvn.cmd" />
+					</then>
+					<else>
+						<property name="mvn.command" value="mvn" />
+					</else>
+	  		</if>
+	  	-->
 
-    <exec executable="${cmd.mvn}" failonerror="true">
-      <arg value="tomcat7:run"/>
-    </exec>
-  </target>
+		<exec executable="${cmd.mvn}" failonerror="true">
+			<arg value="tomcat7:run"/>
+		</exec>
+   </target>
 
-  <target name="clean">
-  		<echo message="Satrt clean target/dist/chunk..." />
+	<target name="clean">
+		<echo message="Satrt clean target/dist/chunk..." />
 		<delete dir="${web.dir}\\dist" />
 		<delete dir="${target.dir}" />
 		<delete dir="${web.app.dir}\\app" />
 		<echo message="Clean target/dist/chunk success..." />
-  </target>
+	</target>
 
-  <target name="clean-all" depends="clean">
-  		<echo message="Start clean ${web.dir}\\node_modules..." />
+	<target name="clean-all" depends="clean">
+		<echo message="Start clean ${web.dir}\\node_modules..." />
 		<delete dir="${web.dir}\\node_modules" />
 		<echo message="Clean ${web.dir}\\node_modules success..." />
-  </target>
+	</target>
 
-  <target name="rebuild">
-  		<echo message="Start rebuild...." />
+	<target name="rebuild">
+		<echo message="Start rebuild...." />
 		<antcall target="clean" />
 		<antcall target="build" />
 		<echo message="Rebuild Success..." />
-  </target>
+	</target>
 
-  <target name="rebuild-all">
-  		<echo message="Start rebuild all..." />
+	<target name="rebuild-all">
+		<echo message="Start rebuild all..." />
 		<antcall target="clean-all" />
 		<antcall target="init" />
 		<echo message="Rebuild all success..." />
-  </target>
-
+	</target>
 </project>
