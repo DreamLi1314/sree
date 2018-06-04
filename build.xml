@@ -144,4 +144,11 @@
 		<antcall target="init" />
 		<echo message="Rebuild all success..." />
 	</target>
+
+	<target name="watch">
+	   <echo message="Start watch app build..." />
+	   <exec executable="${cmd.npm}" failonerror="true" dir="${web.dir}">
+         <arg line="run build:ng -- --watch" />
+	   </exec>
+	</target>
 </project>
