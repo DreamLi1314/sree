@@ -61,7 +61,6 @@
 
  	<target name="init">
 		<antcall target="installDependencies" />
-		<antcall target="build" />
  	</target>
 
  	<target name="build-angulalr" unless="skip.angular">

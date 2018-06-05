@@ -32,7 +32,7 @@
 
 #  Java: Java EE(Current model) ---> SSM ---> Spring Boot + Mybatis
 #  web: Angular2 + Bootstrap + SCSS + Node + Typescript
-#  Server: Jetty(Current Tomcat)
+#  Server: Jetty9.4.10.v20180503
 #  Database: H2
 #  Project Management Tools: Ant + Maven
 #  Cache: Redis (Feature)
