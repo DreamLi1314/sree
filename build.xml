@@ -53,7 +53,7 @@
    <!-- define our main target -->
    <target name="installDependencies">
 		<echo message="start install package..." />
-    <exec executable="${cmd.npm}" failonerror="true" dir="${web.dir}">
+    <exec executable="${cmd.npm}" failonerror="${error.failonerror}" dir="${web.dir}">
        <arg value="install" />
     </exec>
     <echo message="install package success..." />
@@ -66,7 +66,7 @@
 
  	<target name="build-angulalr" unless="skip.angular">
 		<echo message="start build angular..." />
-		<exec executable="${cmd.ng}" failonerror="true" dir="${web.dir}">
+		<exec executable="${cmd.ng}" failonerror="${error.failonerror}" dir="${web.dir}">
 			<arg value="build"/>
 		</exec>
 		<echo message="build angular success..." />
@@ -74,7 +74,7 @@
 
 	<target name="build-java" unless="skip.java">
 		<echo message="start compile java source...." />
-		<exec executable="${cmd.mvn}" failonerror="true">
+		<exec executable="${cmd.mvn}" failonerror="${error.failonerror}">
 			<arg value="compile" />
 		</exec>
 		<echo message="compile java source success...." />
@@ -90,10 +90,10 @@
 	<target name="build">
 		<antcall target="build-java" />
 		<antcall target="build-angulalr" />
-		<antcall target="copy-chunk" />
+		<!-- <antcall target="copy-chunk" /> -->
 	</target>
 
-   <target name="server" description="start up the angular server">
+   <target name="server" description="start up the angular server" depends="build">
   		<echo message="satrt server..." />
 
 	  	<!--
@@ -112,8 +112,8 @@
 	  		</if>
 	  	-->
 
-		<exec executable="${cmd.mvn}" failonerror="true">
-			<arg value="tomcat7:run"/>
+		<exec executable="${cmd.mvn}" failonerror="${error.failonerror}">
+			<arg value="${start.server.command}"/>
 		</exec>
    </target>
 
@@ -147,7 +147,7 @@
 
 	<target name="watch">
 	   <echo message="Start watch app build..." />
-	   <exec executable="${cmd.npm}" failonerror="true" dir="${web.dir}">
+	   <exec executable="${cmd.npm}" failonerror="${error.failonerror}" dir="${web.dir}">
          <arg line="run build:ng -- --watch" />
 	   </exec>
 	</target>
