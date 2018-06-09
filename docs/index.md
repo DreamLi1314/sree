@@ -1,37 +1,29 @@
-## Welcome to GitHub Pages
+## Foreword
 
-You can use the [editor on GitHub](https://github.com/DreamLi1314/sree/edit/master/docs/index.md) to maintain and preview the content for your website in Markdown files.
+Before installing and using this product, you should have installed the following software and configure the corresponding environment variables:
+- JDK: version >= 1.8
+- Ant
+- Maven
+- Node(npm)
+- Angular-cli(ng)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### Download the app source
 
-### Markdown
+You can download this app source on [GitHub](https://github.com/DreamLi1314/sree).
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+### Start the application
+First you should perform an init once to install the dependencies needed for your project, but only if you need it on the first boot.
+``` ant
+ant init
+```
+After each start, you only need to run the following command to start the application:
+```ant
+ant server
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+### Modify the code for yourself
+When you modify the source code, you can execute the following command to compile the source code:
+```
+ant build
+```
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/DreamLi1314/sree/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
