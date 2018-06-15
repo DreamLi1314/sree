@@ -37,13 +37,13 @@ ant watch
 ```
 
 ### Rebuild and clean the application
-- Clean
+#### Clean
 You can use the following command to clean up the program output file:
 ```ant
 ant clean
 ```
 
-- Rebuild
+#### Rebuild
 You can rebuild your code with the following command if needed, for example: When you encounter a cache that is not easy to clean:
 ```ant
 ant rebuild
