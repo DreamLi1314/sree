@@ -12,7 +12,7 @@ import com.alibaba.fastjson.JSON;
 import com.dreamli.service.TableService;
 import com.dreamli.web.domain.TableModel;
 
-@WebServlet("/table/getModel")
+@WebServlet({"/table/getModel"})
 public class GetTable extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -23,9 +23,7 @@ public class GetTable extends HttpServlet {
         response.setHeader("Pragma","No-cache");      
         response.setHeader("Cache-Control","no-cache");      
         response.setDateHeader("Expires", -10);  
-        // 支持跨域请求
-        response.setHeader("Access-Control-Allow-Origin", "*");  
-
+        
 		TableModel tableModel = tableService.getTableModel();
 		response.getWriter().write(JSON.toJSONString(tableModel));
 	}

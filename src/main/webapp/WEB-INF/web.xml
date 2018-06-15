@@ -10,4 +10,15 @@
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
+  
+  
+  <!-- <servlet>
+  	<servlet-name>GetTable</servlet-name>
+  	<servlet-class>com.dreamli.web.table.GetTable</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>GetTable</servlet-name>
+	<url-pattern>/table/getModel</url-pattern>  
+  </servlet-mapping> -->
+  
 </web-app>

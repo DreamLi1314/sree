@@ -112,7 +112,7 @@
 		<echo message="Satrt clean target/dist/chunk..." />
 		<delete dir="${web.dir}\\dist" />
 		<delete dir="${target.dir}" />
-		<echo message="Clean target/dist/chunk success..." />
+		<echo message="Clean output success..." />
 	</target>
 
 	<target name="clean-all" depends="clean">
