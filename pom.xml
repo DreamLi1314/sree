@@ -57,6 +57,7 @@
 			        		<resourceBase>${chunk.dir}</resourceBase>
 			        	</resourceBases>
 			        </webApp>
+			        <scanIntervalSeconds>2</scanIntervalSeconds>
 		       </configuration>
 		   </plugin>
 		</plugins>
