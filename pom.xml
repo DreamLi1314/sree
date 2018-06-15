@@ -11,6 +11,7 @@
 		<jdk.version>1.8</jdk.version>
 		<project.encoding>utf-8</project.encoding>
 		<server.port>9090</server.port>
+		<stop.port>9095</stop.port>
 		<server.path>/${project.artifactId}</server.path>
 		<webapp.dir>src/main/webapp</webapp.dir>
 		<chunk.dir>web/dist/inetsoft/web</chunk.dir>
@@ -49,6 +50,7 @@
 			        <httpConnector>
 			         	<port>${server.port}</port>
 			        </httpConnector>
+			        <stopPort>${stop.port}</stopPort>
 
 			        <webApp>
 			        	<contextPath>${server.path}</contextPath>
