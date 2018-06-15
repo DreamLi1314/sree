@@ -79,17 +79,9 @@
 		<echo message="compile java source success...." />
 	</target>
 
-	<target name="copy-chunk">
-		<echo message="satrt copy web to webapps..." />
-		<copydir dest="${web.app.dir}" src="${web.app.dist}">
-		</copydir>
-		<echo message="copy web ${web.app.dist} to ${web.app.dir} success..." />
- 	</target>
-
 	<target name="build">
 		<antcall target="build-java" />
 		<antcall target="build-angulalr" />
-		<!-- <antcall target="copy-chunk" /> -->
 	</target>
 
    <target name="server" description="start up the angular server" depends="build">
@@ -120,7 +112,6 @@
 		<echo message="Satrt clean target/dist/chunk..." />
 		<delete dir="${web.dir}\\dist" />
 		<delete dir="${target.dir}" />
-		<delete dir="${web.app.dir}\\app" />
 		<echo message="Clean target/dist/chunk success..." />
 	</target>
 
